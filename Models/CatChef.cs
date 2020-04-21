@@ -14,7 +14,7 @@ namespace ChefDish.Models {
 
         [Required]
         public string CatType { get; set; }
-
+        [FutureDate]
         [Required]
         public int Age { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;

@@ -1,0 +1,26 @@
+@model Dish
+<div class="m-2 jumbotron">
+    <h1 class="display-3">Add a Cat-Chef</h1>
+    <hr class="my-2">
+    <a href="/">Home</a>
+</div>
+.<div class="m-2 jumbotron">
+    <form asp-action="CreateDish" asp-controller="Home" method="post">
+        <div class="col">
+            <span asp-validation-for="DishName"></span>
+            <label asp-for="DishName"></label>
+            <input asp-for="DishName">
+        </div>
+            <div class="col">
+            <span asp-validation-for="Tastiness"></span>
+            <label asp-for="Tastiness"></label>
+            <input asp-for="Tastiness">
+        </div>
+            <div class="col">
+            <span asp-validation-for="Calories"></span>
+            <label asp-for="Calories"></label>
+            <input asp-for="Calories">
+        </div>
+        <input type="submit" value="Add Dish" class="btn btn-outline-secondary">
+        </form>
+    </div>
