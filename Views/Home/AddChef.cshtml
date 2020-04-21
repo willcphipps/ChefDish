@@ -6,26 +6,28 @@
 </div>
 .<div class="m-2 jumbotron">
     <form asp-action="CreateCat" asp-controller="Home" method="post">
-        <div class="col">
+        .<div class="p-2 d-flex flex-column col-lg-2">
             <span asp-validation-for="FirstName"></span>
             <label asp-for="FirstName"></label>
             <input asp-for="FirstName">
         </div>
-            <div class="col">
+        <div class="p-2 d-flex flex-column col-lg-2">
             <span asp-validation-for="LastName"></span>
             <label asp-for="LastName"></label>
             <input asp-for="LastName">
         </div>
-                <div class="col">
+        <div class="p-2 d-flex flex-column col-lg-2">
             <span asp-validation-for="CatType"></span>
             <label asp-for="CatType"></label>
             <input asp-for="CatType">
         </div>
-            <div class="col">
-            <span asp-validation-for="Age"></span>
-            <label asp-for="Age"></label>
-            <input type="date" asp-for="Age">
+            <div class="p-2 d-flex flex-column col-lg-2">
+            <span asp-validation-for="Birthday"></span>
+            <label asp-for="Birthday"></label>
+            <input type="date" asp-for="Birthday">
         </div>
-        <input type="submit" value="Add Cat" class="btn btn-outline-secondary">
+        <div class="p-2 d-flex flex-column col-lg-2">
+            <input type="submit" value="Add Cat" class="btn btn-outline-secondary">
+        </div>
         </form>
     </div>

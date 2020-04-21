@@ -3,14 +3,16 @@ using System;
 using ChefDish.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChefDish.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20200421192733_fk")]
+    partial class fk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +53,11 @@ namespace ChefDish.Migrations
 
                     b.Property<int>("Calories");
 
-                    b.Property<int>("CatId");
+                    b.Property<int>("ChefId");
 
                     b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int?>("CreatorCatId");
 
                     b.Property<string>("DishName")
                         .IsRequired();
@@ -64,7 +68,7 @@ namespace ChefDish.Migrations
 
                     b.HasKey("DishId");
 
-                    b.HasIndex("CatId");
+                    b.HasIndex("CreatorCatId");
 
                     b.ToTable("LosPlatos");
                 });
@@ -73,8 +77,7 @@ namespace ChefDish.Migrations
                 {
                     b.HasOne("ChefDish.Models.CatChef", "Creator")
                         .WithMany("Recipes")
-                        .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CreatorCatId");
                 });
 #pragma warning restore 612, 618
         }

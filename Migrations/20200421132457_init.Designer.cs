@@ -3,14 +3,16 @@ using System;
 using ChefDish.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChefDish.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20200421132457_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,14 +24,12 @@ namespace ChefDish.Migrations
                     b.Property<int>("CatId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Birthday");
+                    b.Property<int>("Birthday");
 
                     b.Property<string>("CatType")
                         .IsRequired();
 
                     b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("DishId");
 
                     b.Property<string>("FirstName")
                         .IsRequired();
@@ -51,9 +51,9 @@ namespace ChefDish.Migrations
 
                     b.Property<int>("Calories");
 
-                    b.Property<int>("CatId");
-
                     b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int?>("CreatorCatId");
 
                     b.Property<string>("DishName")
                         .IsRequired();
@@ -64,7 +64,7 @@ namespace ChefDish.Migrations
 
                     b.HasKey("DishId");
 
-                    b.HasIndex("CatId");
+                    b.HasIndex("CreatorCatId");
 
                     b.ToTable("LosPlatos");
                 });
@@ -73,8 +73,7 @@ namespace ChefDish.Migrations
                 {
                     b.HasOne("ChefDish.Models.CatChef", "Creator")
                         .WithMany("Recipes")
-                        .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CreatorCatId");
                 });
 #pragma warning restore 612, 618
         }

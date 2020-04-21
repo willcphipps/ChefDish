@@ -14,8 +14,9 @@ namespace ChefDish.Models {
 
         [Required]
         public int Calories { get; set; }
-        public CatChef Creator { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public int CatId {get;set;}
+        public CatChef Creator { get; set; }
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }

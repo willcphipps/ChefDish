@@ -7,7 +7,7 @@ namespace ChefDish.Models {
         protected override ValidationResult IsValid (object value, ValidationContext validationContext) {
             if (value is DateTime) {
                 DateTime compare = (DateTime) value;
-                compare.AddYears (18);
+                compare = compare.AddYears (18);
                 if (compare < DateTime.Now) {
                     return ValidationResult.Success;
                 } else {

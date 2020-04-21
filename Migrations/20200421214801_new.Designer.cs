@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChefDish.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20200420233001_initial")]
-    partial class initial
+    [Migration("20200421214801_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,12 +24,14 @@ namespace ChefDish.Migrations
                     b.Property<int>("CatId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Age");
+                    b.Property<DateTime>("Birthday");
 
                     b.Property<string>("CatType")
                         .IsRequired();
 
                     b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int>("DishId");
 
                     b.Property<string>("FirstName")
                         .IsRequired();
@@ -51,9 +53,9 @@ namespace ChefDish.Migrations
 
                     b.Property<int>("Calories");
 
-                    b.Property<DateTime>("CreatedAt");
+                    b.Property<int>("CatId");
 
-                    b.Property<int?>("CreatorCatId");
+                    b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("DishName")
                         .IsRequired();
@@ -64,7 +66,7 @@ namespace ChefDish.Migrations
 
                     b.HasKey("DishId");
 
-                    b.HasIndex("CreatorCatId");
+                    b.HasIndex("CatId");
 
                     b.ToTable("LosPlatos");
                 });
@@ -73,7 +75,8 @@ namespace ChefDish.Migrations
                 {
                     b.HasOne("ChefDish.Models.CatChef", "Creator")
                         .WithMany("Recipes")
-                        .HasForeignKey("CreatorCatId");
+                        .HasForeignKey("CatId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

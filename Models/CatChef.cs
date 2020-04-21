@@ -9,16 +9,19 @@ namespace ChefDish.Models {
 
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
 
         [Required]
         public string CatType { get; set; }
+
         [FutureDate]
         [Required]
-        public int Age { get; set; }
+        public DateTime Birthday { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public int DishId {get;set;}
         public List<Dish> Recipes { get; set; }
 
     }
